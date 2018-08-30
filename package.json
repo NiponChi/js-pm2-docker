@@ -1,6 +1,6 @@
 {
-  "name": "pm2-test",
-  "version": "1.0.0",
+  "name": "js-pm2-docker",
+  "version": "0.0.1",
   "description": "A startup template for a quick node app development",
   "main": "index.js",
   "scripts": {
