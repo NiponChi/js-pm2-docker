@@ -13,32 +13,22 @@ With:
 
 Create a `.env` file, see details `.env.sample`
 
-To run the app locally
-
 ```bash
 npm i
 
-# run without pm2
-npm run dev
+# start container
+npm run up
 
-# run with pm2
-pm2-runtime start pm2.json --web 3001
-````
+# list process
+npm run pm2:ls
 
-To start to app in container mode
+# monitor porcess
+npm run pm2:monit
 
-```bash
-docker-compose up
-```
+# to get process status
+curl localhost:3001 # $PM2_PORT
 
-To test process restarting, use `/die`. the process will be crashed and pm2 should restart the process after that
+# test clustering
+curl localhost:3000 # $PORT
 
-```bash
-curl localhost:3000/die
-```
-
-To get process info
-
-```bash
-curl localhost:3001
 ```

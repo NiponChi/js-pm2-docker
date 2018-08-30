@@ -4,15 +4,14 @@
   "description": "A startup template for a quick node app development",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index",
-    "start:docker": "docker-compose up -d --build"
+    "up": "docker-compose -f docker/docker-compose.yml up -d",
+    "down": "docker-compose -f docker/docker-compose.yml down",
+    "pm2:ls": "docker-compose -f docker/docker-compose.yml exec js-pm2 pm2 ls",
+    "pm2:monit": "docker-compose -f docker/docker-compose.yml exec js-pm2 pm2 monit"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "dotenv": "^6.0.0",
-    "express": "^4.16.3",
-    "nodemon": "^1.18.3"
   }
 }

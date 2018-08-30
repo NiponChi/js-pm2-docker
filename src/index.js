@@ -1,27 +1,23 @@
-require('dotenv/config')
-const port = parseInt(process.env.PORT) || 3000
-const id = Math.floor(Math.random() * 10000).toString()
+const http = require('http')
 
-const log = (msg) => {
-  return console.log(id, msg)
-}
+const id = `${Math.floor(Math.random() * 10000)}`
+const runCount = Math.round(Math.random() * 30)
 
-// create an express app
-const app = require('express')()
-// listening to port
-app.listen(port, (err) => {
-  if (err) {
+const server = http.createServer((req, res) => {
+  res.write(`response from ${id}`, 'utf-8', (err) => {
+    res.end()
+  })
+}).listen(process.env.PORT)
+
+server.on('clientError', (err, socket) => {
+  socket.end('HTTP/1.1 400 Bad Request\r\n\r\n');
+})
+
+let count = 0
+const intervalId = setInterval(() => {
+  console.log(id, new Date())
+  if (++count > runCount) {
+    clearInterval(intervalId)
+    process.exit()
   }
-
-  log(`app started on port ${port}`)
-})
-
-app.use('/die', (req, res) => {
-  res.send(`${id}: dieing`)
-  // cause an exception on main process
-  setTimeout(() => { throw new Error('JUST DIE!!!')}, 0);
-})
-
-app.use('/', (req, res) => [
-  res.send(`${id}: OK`)
-])
+}, 1000)
