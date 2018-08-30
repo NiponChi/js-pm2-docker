@@ -2,13 +2,6 @@
 
 A startup template for a quick node app development, which requires process management, clustering, and restarting on code changed.
 
-With:
-
-- [pm2](https://github.com/Unitech/pm2)
-- [docker](https://www.docker.com/)
-- [nodemon](https://github.com/remy/nodemon)
-- [express](https://github.com/expressjs/express)
-
 ## Development
 
 Create a `.env` file, see details `.env.sample`
